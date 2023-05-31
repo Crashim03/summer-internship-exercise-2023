@@ -14,9 +14,18 @@ public class SnailShellPatternTask implements Callable<int[]> {
 
     @Override
     public int[] call() {
-        int[] solution = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        if (_n == 0) return new int[0];
+        if (_n == 1) return _matrix[0];
+        
+        int[] solution = new int[_n * _n];
+        int d = 0;
+
+        for (int i = 0; i < _n; i++) 
+            for (int j = 0; j < _n; j++) {
+
+            
+        }
 
         return solution;
     }
 }
-    

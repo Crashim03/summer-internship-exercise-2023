@@ -20,6 +20,4 @@ class SnailShellPattern implements ISnailShellPattern {
     Future<int[]> result = executor.submit(new SnailShellPatternTask(matrix));
     return result;
   };
-
-
 }
