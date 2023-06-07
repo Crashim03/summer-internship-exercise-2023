@@ -29,7 +29,7 @@ public class SnailShellPatternTest {
     throws InterruptedException, ExecutionException, TimeoutException {
     Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
     int[] result = count.get(10, TimeUnit.SECONDS);
-    assertArrayEquals("Wrong result", result, expected);
+    assertArrayEquals("Wrong result.", result, expected);
   }
 
   @Test

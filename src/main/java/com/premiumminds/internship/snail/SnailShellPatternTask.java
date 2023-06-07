@@ -20,10 +20,15 @@ public class SnailShellPatternTask implements Callable<int[]> {
         int[] solution = new int[_n * _n];
         int d = 0;
 
-        for (int i = 0; i < _n; i++) 
-            for (int j = 0; j < _n; j++) {
+        if (_n % 2 == 0)  d = _n / 2;
+        else d = _n / 2 + 1; 
+        System.out.println("d: " + d);
 
-            
+        for (int i = 0; i < d; i++) {
+            for (int j = i; j < _n - i; j++) {
+                System.out.print(_matrix[i][j] + " ");
+            }
+            System.out.println();
         }
 
         return solution;
