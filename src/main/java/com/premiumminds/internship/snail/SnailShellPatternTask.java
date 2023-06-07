@@ -12,17 +12,7 @@ public class SnailShellPatternTask implements Callable<int[]> {
         _n = matrix.length;
     }
 
-    private void fillLinesMatrix(int[][] matrix, int d) {
-        for (int i = 0; i < d; i++) {
-            for (int j = i; j < _n - i; j++) {
-                System.out.print(_matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    @Override
-    public int[] call() {
+    private int[] fillLinesFromMatrix() {
         if (_n == 0)
             return new int[0];
         if (_n == 1)
@@ -35,11 +25,17 @@ public class SnailShellPatternTask implements Callable<int[]> {
             d = _n / 2;
         else
             d = _n / 2 + 1;
-
-        fillLinesMatrix(_matrix, d);
-
-        System.out.println("d: " + d);
+        for (int i = 0; i < d; i++) {
+            for (int j = i; j < _n - i; j++) {
+                solution[i * 3 * (_n - i) + i + j] = _matrix[i][j];
+            }
+        }
 
         return solution;
+    }
+
+    @Override
+    public int[] call() {
+        return fillLinesFromMatrix();
     }
 }
