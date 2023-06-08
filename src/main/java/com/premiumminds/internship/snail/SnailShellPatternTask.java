@@ -13,41 +13,38 @@ public class SnailShellPatternTask implements Callable<int[]> {
     }
 
     private int[] fillLinesFromMatrix() {
-        if (_n == 0)
-            return new int[0];
-        if (_n == 1)
-            return _matrix[0];
+        if (_n == 0) return new int[0];
+        if (_n == 1) return _matrix[0];
 
         int[] solution = new int[_n * _n];
         int d = 0;
 
-        if (_n % 2 == 0)
-            d = _n / 2;
-        else
-            d = _n / 2 + 1;
+        if (_n % 2 == 0) d = _n / 2;
+        else d = _n / 2 + 1;
 
-        int index = 0;
+        int last_index = 0;
         for (int i = 0; i < d; i++) {
+            int count_up = 0;
+            int count_right_bottom = 0;
+            int count_left = 0;
 
-            // Top
             for (int j = i; j < _n - i; j++) {
-                solution[index++] = _matrix[i][j];
-            }
+                // Top
+                solution[last_index + count_up++] = _matrix[i][j];
 
-            // Right
-            for (int j = i + 1; j < _n - i; j++) {
-                solution[index++] = _matrix[j][_n - i - 1];
-            }
+                // Right and Bottom
+                if (j != i){
+                    solution[last_index + _n - 2 * i + count_right_bottom] = _matrix[j][_n - i - 1];
+                    solution[last_index + (_n - 2 * i) * 2 - 1 + count_right_bottom] = _matrix[_n - i - 1][_n - j - 1];
+                    count_right_bottom++;
+                }
 
-            // Bottom
-            for (int j = i + 1; j < _n - i; j++) {
-                solution[index++] = _matrix[_n - i - 1][_n - j - 1];
+                // Left
+                if (j != i && j != _n - i - 1){
+                    solution[last_index + (_n - 2 * i) * 3 - 2 + count_left++] = _matrix[_n - j - 1][i];
+                }
             }
-
-            // Left
-            for (int j = i + 1; j < _n - i - 1; j++) {
-                solution[index++] = _matrix[_n - j - 1][i];
-            }
+            last_index += count_up + count_right_bottom * 2 + count_left;
         }
         return solution;
     }
