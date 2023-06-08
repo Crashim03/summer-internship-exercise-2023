@@ -77,6 +77,15 @@ public class SnailShellPatternTest {
   }
 
   @Test
+  public void FourByFourTest()
+      throws InterruptedException, ExecutionException, TimeoutException {
+    int[][] matrix = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12},
+    { 13, 14, 15, 16} };
+    int[] expected = { 1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10 };
+    Test(matrix, expected);
+  }
+
+  @Test
   public void EmptyTest()
       throws InterruptedException, ExecutionException, TimeoutException {
     int[][] matrix = { {} };
@@ -89,7 +98,7 @@ public class SnailShellPatternTest {
       throws InterruptedException, ExecutionException, TimeoutException {
     int[][] matrix = new int[10][10];
     int[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        20, 30, 40, 50, 60, 70, 90, 100,
+        20, 30, 40, 50, 60, 70, 80, 90, 100,
         99, 98, 97, 96, 95, 94, 93, 92, 91,
         81, 71, 61, 51, 41, 31, 21, 11,
         12, 13, 14, 15, 16, 17, 18, 19,
